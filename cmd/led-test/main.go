@@ -6,6 +6,12 @@ import (
 	"github.com/rpi-ws281x/rpi-ws281x-go"
 )
 
+var OFF uint32 = 0x00000000
+var GREEN uint32 = 0x00FF0000
+var RED uint32 = 0xFF000000
+var BLUE uint32 = 0xFF00FF00
+var WHITE uint32 = 0xFFFFFF00
+
 func main() {
 	cOpt := ws2811.ChannelOption{
 		GpioPin : 18,
@@ -29,15 +35,17 @@ func main() {
 		panic(err)
 	}
 
+	snakey(dev, 0, BLUE)
+
 	defer dev.Fini()
+}
 
-	setLed(dev, 0, 0, 0x00FF0000)
-	renderLeds(dev)
-
-	time.Sleep(time.Second * 3)
-
-	setLed(dev, 0, 0, 0x00000000)
-	renderLeds(dev)
+func snakey(dev *ws2811.WS2811, channel int, col uint32) {
+	for i := range dev.Leds(channel) {
+		setLed(dev, channel, i, col)
+		time.Sleep(time.Millisecond * 100)
+		setLed(dev, channel, i, OFF)
+	}
 }
 
 func setLed(dev *ws2811.WS2811, channel int, led int, col uint32) {
