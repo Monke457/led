@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/rpi-ws281x/rpi-ws281x-go"
@@ -35,13 +36,14 @@ func main() {
 		panic(err)
 	}
 
-	snakey(dev, 0, BLUE)
+	snakey(dev, 0, GREEN)
 
 	defer dev.Fini()
 }
 
 func snakey(dev *ws2811.WS2811, channel int, col uint32) {
 	for i := range dev.Leds(channel) {
+		fmt.Println(i)
 		setLed(dev, channel, i, col)
 		time.Sleep(time.Millisecond * 100)
 		setLed(dev, channel, i, OFF)
