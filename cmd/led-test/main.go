@@ -16,7 +16,7 @@ func main() {
 	cOpt := ws2811.ChannelOption{
 		GpioPin : 18,
 		Invert : false,
-		LedCount : 768,
+		LedCount : 1024,
 		Brightness : 8,
 	}
 
@@ -39,10 +39,10 @@ func main() {
 
 	//snakey(dev, 0, GREEN)
 
-	setLed(dev, 0, 512, GREEN)
+	setLed(dev, 0, 768, GREEN)
 	renderLeds(dev)
 	time.Sleep(3 * time.Second)
-	setLed(dev, 0, 512, OFF)
+	setLed(dev, 0, 768, OFF)
 	renderLeds(dev)
 }
 
