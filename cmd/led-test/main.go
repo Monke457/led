@@ -9,8 +9,8 @@ import (
 
 const (
     OFF   uint32 = 0x00000000
-    RED   uint32 = 0x00FF0000
-    GREEN uint32 = 0x0000FF00
+    RED   uint32 = 0x0000FF00
+    GREEN uint32 = 0x00FF0000
     BLUE  uint32 = 0x000000FF
     WHITE uint32 = 0x00FFFFFF
 )
@@ -43,7 +43,9 @@ func main() {
 
 	//snakey(dev, 0, GREEN)
 
-	forMum(dev, 0)
+	forMum(dev, 0, RED)
+	forMum(dev, 0, GREEN)
+	forMum(dev, 0, BLUE)
 	//forJack(dev, 0)
 
 //	setLed(dev, 0, 0, GREEN)
@@ -107,10 +109,10 @@ var heartCoords = []int{
     991, 992, 993, 994, 995, 996, 1004, 1005, 1006, 1007, 1008, 1009,
 }
 
-func forMum(dev *ws2811.WS2811, channel int) {
+func forMum(dev *ws2811.WS2811, channel int, col uint32) {
 	for i := range dev.Leds(channel) {
 		if slices.Contains(heartCoords, i) {
-			setLed(dev, channel, i, RED)
+			setLed(dev, channel, i, col)
 		} else {
 			setLed(dev, channel, i, WHITE)
 		}
