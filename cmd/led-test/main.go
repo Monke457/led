@@ -43,10 +43,16 @@ func main() {
 
 	//snakey(dev, 0, GREEN)
 
-	forMum(dev, 0, RED)
-	forMum(dev, 0, GREEN)
-	forMum(dev, 0, BLUE)
-	//forJack(dev, 0)
+	for range 10 {
+		forMum(dev, 0, RED)
+		forJack(dev, 0, WHITE)
+		renderLeds(dev)
+	
+		time.Sleep(2 * time.Second)
+
+		allOff(dev, 0)
+		renderLeds(dev)
+	}
 
 //	setLed(dev, 0, 0, GREEN)
 //	renderLeds(dev)
@@ -113,24 +119,31 @@ func forMum(dev *ws2811.WS2811, channel int, col uint32) {
 	for i := range dev.Leds(channel) {
 		if slices.Contains(heartCoords, i) {
 			setLed(dev, channel, i, col)
-		} else {
-			setLed(dev, channel, i, WHITE)
 		}
 	}
-	renderLeds(dev)
-	time.Sleep(3 * time.Second)
+}
 
+var xCoords = []int{
+    332, 339, 340, 346, 347, 357, 358, 360, 361, 375,
+    392, 406, 407, 409, 410, 420, 421, 427, 428, 435,
+    584, 598, 599, 601, 602, 612, 613, 619, 620, 624,
+    626, 627, 637, 638, 639, 640, 641, 642, 652, 653,
+    655, 659, 660, 666, 667, 677, 678, 680, 681, 695,
+    847, 944,
+}
+
+func forJack(dev *ws2811.WS2811, channel int, col uint32) {
+	for i := range dev.Leds(channel) {
+		if slices.Contains(xCoords, i) {
+			setLed(dev, channel, i, col)
+		}
+	}
+}
+
+func allOff(dev *ws2811.WS2811, channel int) {
 	for i := range dev.Leds(channel) {
 		setLed(dev, channel, i, OFF)
 	}
-	renderLeds(dev)
-}
-
-func forJack(dev *ws2811.WS2811, channel int) {
-	for i := range dev.Leds(channel) {
-		setLed(dev, channel, i, WHITE)
-	}
-	renderLeds(dev)
 }
 
 func snakey(dev *ws2811.WS2811, channel int, col uint32) {
