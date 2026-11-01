@@ -47,11 +47,11 @@ func main() {
 		forMum(dev, 0, RED)
 		forJack(dev, 0, WHITE)
 		renderLeds(dev)
-	
-		time.Sleep(2 * time.Second)
+		time.Sleep(1 * time.Second)
 
 		allOff(dev, 0)
 		renderLeds(dev)
+		time.Sleep(1 * time.Second)
 	}
 
 //	setLed(dev, 0, 0, GREEN)
