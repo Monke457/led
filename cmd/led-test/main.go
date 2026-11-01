@@ -44,7 +44,7 @@ func main() {
 	//forJack(dev, 0)
 
 	time.Sleep(3 * time.Second)
-	setLed(dev, 0, 0, OFF)
+	setLed(dev, 0, 00, OFF)
 	renderLeds(dev)
 
 //	setLed(dev, 0, 0, GREEN)
