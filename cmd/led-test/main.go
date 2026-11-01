@@ -114,7 +114,10 @@ func forMum(dev *ws2811.WS2811, channel int) {
 	}
 	renderLeds(dev)
 	time.Sleep(3 * time.Second)
-	setLed(dev, 0, 0, OFF)
+
+	for i := range dev.Leds(channel) {
+		setLed(dev, channel, i, OFF)
+	}
 	renderLeds(dev)
 }
 
