@@ -7,11 +7,13 @@ import (
 	"github.com/rpi-ws281x/rpi-ws281x-go"
 )
 
-var OFF uint32 = 0x00000000
-var GREEN uint32 = 0x00FF0000
-var RED uint32 = 0xFF000000
-var BLUE uint32 = 0x0000FF00
-var WHITE uint32 = 0xFFFFFF00
+const (
+    OFF   uint32 = 0x00000000
+    RED   uint32 = 0x00FF0000
+    GREEN uint32 = 0x0000FF00
+    BLUE  uint32 = 0x000000FF
+    WHITE uint32 = 0x00FFFFFF
+)
 
 func main() {
 	cOpt := ws2811.ChannelOption{
@@ -19,6 +21,7 @@ func main() {
 		Invert : false,
 		LedCount : 1024,
 		Brightness : 4,
+		StripeType: ws2811.WS2811StripRGB,
 	}
 
 	opt := ws2811.Option{
