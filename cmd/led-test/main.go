@@ -39,11 +39,34 @@ func main() {
 
 	snakey(dev, 0, GREEN)
 
+	forMum(dev, 0)
+	//forJack(dev, 0)
+
+	time.Sleep(3 * time.Second)
+	setLed(dev, 0, 0, OFF)
+	renderLeds(dev)
+
 //	setLed(dev, 0, 0, GREEN)
 //	renderLeds(dev)
 //	time.Sleep(3 * time.Second)
-//	setLed(dev, 0, 00, OFF)
+//	setLed(dev, 0, 0, OFF)
 //	renderLeds(dev)
+}
+
+var heartCoords = []int{269, 512} 
+
+func forMum(dev *ws2811.WS2811, channel int) {
+	for i := range dev.Leds(channel) {
+		setLed(dev, channel, i, RED)
+	}
+	renderLeds(dev)
+}
+
+func forJack(dev *ws2811.WS2811, channel int) {
+	for i := range dev.Leds(channel) {
+		setLed(dev, channel, i, WHITE)
+	}
+	renderLeds(dev)
 }
 
 func snakey(dev *ws2811.WS2811, channel int, col uint32) {
