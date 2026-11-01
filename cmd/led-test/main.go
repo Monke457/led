@@ -37,13 +37,13 @@ func main() {
 
 	defer dev.Fini()
 
-	//snakey(dev, 0, GREEN)
+	snakey(dev, 0, GREEN)
 
-	setLed(dev, 0, 0, GREEN)
-	renderLeds(dev)
-	time.Sleep(3 * time.Second)
-	setLed(dev, 0, 00, OFF)
-	renderLeds(dev)
+//	setLed(dev, 0, 0, GREEN)
+//	renderLeds(dev)
+//	time.Sleep(3 * time.Second)
+//	setLed(dev, 0, 00, OFF)
+//	renderLeds(dev)
 }
 
 func snakey(dev *ws2811.WS2811, channel int, col uint32) {
