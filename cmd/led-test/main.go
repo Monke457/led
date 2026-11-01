@@ -40,7 +40,7 @@ func main() {
 
 	//snakey(dev, 0, GREEN)
 
-	forMum(dev, 0)
+	//forMum(dev, 0)
 	//forJack(dev, 0)
 
 	time.Sleep(3 * time.Second)
@@ -50,8 +50,8 @@ func main() {
 //	setLed(dev, 0, 0, GREEN)
 //	renderLeds(dev)
 //	time.Sleep(3 * time.Second)
-//	setLed(dev, 0, 0, OFF)
-//	renderLeds(dev)
+	setLed(dev, 0, 0, OFF)
+	renderLeds(dev)
 }
 
 var heartCoords = []int{
