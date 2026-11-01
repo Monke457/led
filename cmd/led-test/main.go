@@ -18,7 +18,7 @@ func main() {
 		GpioPin : 18,
 		Invert : false,
 		LedCount : 1024,
-		Brightness : 8,
+		Brightness : 4,
 	}
 
 	opt := ws2811.Option{
@@ -40,18 +40,14 @@ func main() {
 
 	//snakey(dev, 0, GREEN)
 
-	//forMum(dev, 0)
+	forMum(dev, 0)
 	//forJack(dev, 0)
-
-	time.Sleep(3 * time.Second)
-	setLed(dev, 0, 00, OFF)
-	renderLeds(dev)
 
 //	setLed(dev, 0, 0, GREEN)
 //	renderLeds(dev)
 //	time.Sleep(3 * time.Second)
-	setLed(dev, 0, 0, OFF)
-	renderLeds(dev)
+//	setLed(dev, 0, 0, OFF)
+//	renderLeds(dev)
 }
 
 var heartCoords = []int{
@@ -116,6 +112,9 @@ func forMum(dev *ws2811.WS2811, channel int) {
 			setLed(dev, channel, i, WHITE)
 		}
 	}
+	renderLeds(dev)
+	time.Sleep(3 * time.Second)
+	setLed(dev, 0, 0, OFF)
 	renderLeds(dev)
 }
 
